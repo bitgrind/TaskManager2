@@ -2,21 +2,22 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Task {
-  private String mDesc;
+public class Task{
+  private String mDescription;
   private Boolean mCompleted;
   private LocalDateTime mCreatedAt;
   private static List<Task> instances = new ArrayList<Task>();
+  private int mId;
 
   public Task(String desc){
-    mDesc = desc;
+    mDescription = desc;
     mCompleted = false;
     mCreatedAt = LocalDateTime.now();
     instances.add(this);
   }
 
-  public String getDesc(){
-    return mDesc;
+  public String getDescription(){
+    return mDescription;
   }
 
   public boolean isCompleted() {
@@ -29,5 +30,17 @@ public class Task {
 
   public static List<Task> all() {
     return instances;
+  }
+
+  public static void clear() {
+    instances.clear();
+  }
+
+  public int getId(){
+    return mId;
+  }
+
+  public static Task find(int id) {
+    return instances.get(id - 1);
   }
 }
